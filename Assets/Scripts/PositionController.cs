@@ -9,7 +9,7 @@ public class PositionController : MonoBehaviour
     public GameObject myDotTransform;
     //Values of the Controller
     public float pitch;//vertical rotation
-    public float yaw; //horizontal
+    public float yaw; //horizontal //Go for -180 to 180 range
     public float roll;//sideways rotation
 
     // Start is called before the first frame update
