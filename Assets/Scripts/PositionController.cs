@@ -12,10 +12,17 @@ public class PositionController : MonoBehaviour
     public float yaw; //horizontal //Go for -180 to 180 range
     public float roll;//sideways rotation
 
+    //bools
+    public bool isBlocking;
+
+    //isBlocking Text
+    public GameObject isBlockingTrue;
+    public GameObject isBlockingFalse;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        isBlocking = false;
     }
 
     // Update is called once per frame
@@ -52,5 +59,16 @@ public class PositionController : MonoBehaviour
         }
 
   
+        //is Blocking
+        if(isBlocking)
+        {
+            isBlockingTrue.SetActive(true);
+            isBlockingFalse.SetActive(false);
+        }
+        else
+        {
+            isBlockingTrue.SetActive(false);
+            isBlockingFalse.SetActive(true);
+        }
     }
 }
