@@ -6,6 +6,13 @@ public class ReadArduino : MonoBehaviour
 {
     public SerialController serialController;
     public GameObject positionController;
+
+    public string stringRoll;
+    public string stringPitch;
+    public string stringYaw;
+
+    
+
     // Initialization
     void Start()
     {
@@ -29,12 +36,26 @@ public class ReadArduino : MonoBehaviour
             positionController.GetComponent<PositionController>().isBlocking = false;
         }
 
+        else if (message.Contains("roll: "))
+        {
+            stringRoll = message.Substring(6);
+            
+        }
+        else if (message.Contains("pitch: "))
+        {
+            stringPitch = message.Substring(7);
+        }
+        else if (message.Contains("yaw: "))
+        {
+            stringYaw = message.Substring(6);
+        }
+
         // Check if the message is plain data or a connect/disconnect event.
-        if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_CONNECTED))
-            Debug.Log("Connection established");
-        else if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_DISCONNECTED))
-            Debug.Log("Connection attempt failed or disconnection detected");
-        else
-            Debug.Log("Message arrived: " + message);
+        //if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_CONNECTED))
+        //    Debug.Log("Connection established");
+        //else if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_DISCONNECTED))
+        //    Debug.Log("Connection attempt failed or disconnection detected");
+        //else
+        //    Debug.Log("Message arrived: " + message);
     }
 }

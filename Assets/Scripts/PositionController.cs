@@ -19,6 +19,12 @@ public class PositionController : MonoBehaviour
     public GameObject isBlockingTrue;
     public GameObject isBlockingFalse;
 
+    //Reading Arduino
+    public GameObject arduinoInfo;
+    public float aPitch;//Arduino
+    public float aYaw; //Arduino
+    public float aRoll;//Arduino
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +34,18 @@ public class PositionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+        //aPitch = float.Parse((arduinoInfo.GetComponent<ReadArduino>().stringPitch));
+        //aRoll= float.Parse((arduinoInfo.GetComponent<ReadArduino>().stringRoll)); 
+        //aYaw= float.Parse((arduinoInfo.GetComponent<ReadArduino>().stringYaw));
+
+        aPitch = float.Parse((arduinoInfo.GetComponent<ReadArduino>().stringRoll));
+        aRoll = float.Parse((arduinoInfo.GetComponent<ReadArduino>().stringPitch));
+        aYaw = float.Parse((arduinoInfo.GetComponent<ReadArduino>().stringYaw));
+
+        pitch = aPitch;
+        roll = aRoll;
+        yaw = aYaw;
         if(pitch>25)
         {
             myDotTransform.transform.position = new Vector3(myDotTransform.transform.position.x, 4.35f, myDotTransform.transform.position.z);
@@ -43,12 +61,12 @@ public class PositionController : MonoBehaviour
             myDotTransform.transform.position = new Vector3(myDotTransform.transform.position.x, 1.04f, myDotTransform.transform.position.z);
         }
 
-        if(yaw>25)
+        if(roll>15)
         {
             myDotTransform.transform.position = new Vector3(3.56f, myDotTransform.transform.position.y, myDotTransform.transform.position.z);
         }
 
-        else if (yaw < -25)
+        else if (roll < -15)
         {
             myDotTransform.transform.position = new Vector3(-3.74f, myDotTransform.transform.position.y, myDotTransform.transform.position.z);
         }
